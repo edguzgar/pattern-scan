@@ -6,14 +6,13 @@ BOOL IsProcessRunning(const char* processName)
 {
     HANDLE processSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
 
-    if (processSnapshot != INVALID_HANDLE_VALUE)
-    {
+    if (processSnapshot != INVALID_HANDLE_VALUE) {
+        
         PROCESSENTRY32 processEntry;
         processEntry.dwSize = sizeof(PROCESSENTRY32);
 
         if (Process32First(processSnapshot, &processEntry)) {
             do {
-
                 if (strcmp(processEntry.szExeFile, processName) == 0) {
                     CloseHandle(processSnapshot);
                     return TRUE;
@@ -62,8 +61,8 @@ int GetModuleEntry(const char* moduleName, DWORD pid, MODULEENTRY32* module)
 {
     HANDLE moduleSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, pid);
 
-    if (moduleSnapshot != INVALID_HANDLE_VALUE)
-    {
+    if (moduleSnapshot != INVALID_HANDLE_VALUE) {
+        
         module->dwSize = sizeof(MODULEENTRY32);
 
         if (Module32First(moduleSnapshot, module)) {
