@@ -32,13 +32,12 @@ DWORD GetProcessID(const char* processName)
     HANDLE processSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
 
     if (processSnapshot != INVALID_HANDLE_VALUE) {
-
-        PROCESSENTRY32 processEntry;
+        
+		PROCESSENTRY32 processEntry;
         processEntry.dwSize = sizeof(PROCESSENTRY32);
 
         if (Process32First(processSnapshot, &processEntry)) {
             do {
-
                 if (strcmp(processEntry.szExeFile, processName) == 0) {
                     pid = processEntry.th32ProcessID;
                     break;
@@ -67,7 +66,6 @@ int GetModuleEntry(const char* moduleName, DWORD pid, MODULEENTRY32* module)
 
         if (Module32First(moduleSnapshot, module)) {
             do {
-
                 if (strcmp(module->szModule, moduleName) == 0) {
                     CloseHandle(moduleSnapshot);
                     return 0;
@@ -93,7 +91,6 @@ DWORD GetModuleBaseAddr(const char* moduleName, DWORD pid)
 
         if (Module32First(moduleSnapshot, &module)) {
             do {
-
                 if (strcmp(module.szModule, moduleName) == 0) {
                     moduleBaseAddr = (DWORD)module.modBaseAddr;
                     break;
