@@ -4,7 +4,7 @@
 
 BOOL IsProcessRunning(const char* processName)
 {
-    HANDLE processSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
+    HANDLE processSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 
     if (processSnapshot != INVALID_HANDLE_VALUE) {
         
@@ -29,7 +29,7 @@ BOOL IsProcessRunning(const char* processName)
 DWORD GetProcessID(const char* processName)
 {
     DWORD pid = 0;
-    HANDLE processSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
+    HANDLE processSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 
     if (processSnapshot != INVALID_HANDLE_VALUE) {
         
