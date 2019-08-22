@@ -2,7 +2,7 @@
 
 #include <string.h>
 
-void* FindPattern(unsigned char* pattern, char* mask, unsigned char* buffer, size_t buffer_size)
+void* find_pattern(unsigned char* pattern, char* mask, unsigned char* buffer, size_t buffer_size)
 {
     size_t mask_size = strlen(mask);
     unsigned char* end = buffer + buffer_size - mask_size;
