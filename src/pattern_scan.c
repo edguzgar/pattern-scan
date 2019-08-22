@@ -2,19 +2,19 @@
 
 #include <string.h>
 
-void* find_pattern(unsigned char* pattern, char* mask, unsigned char* buffer, size_t buffer_size)
+void* find_pattern(unsigned char* pattern, char* mask, unsigned char* buffer, size_t n)
 {
-    size_t mask_size = strlen(mask);
-    unsigned char* end = buffer + buffer_size - mask_size;
+    size_t m = strlen(mask);
+    unsigned char* end = buffer + n - m;
 
     for (; buffer < end; ++buffer) {
         size_t i;
 
-        for (i = 0; i < mask_size; ++i)
+        for (i = 0; i < m; ++i)
             if (mask[i] != '?' && buffer[i] != pattern[i])
                 break;
 
-        if (i == mask_size)
+        if (i == m)
             return buffer + (strchr(mask, '?') - mask);
     }
 
