@@ -20,7 +20,7 @@ void* FindPattern(const unsigned char* pattern, const char* mask, const unsigned
                 break;
         }
         if (i == mask_size)
-            return buffer + (strchr(mask, '?') - mask);
+            return (void*)(buffer + (strchr(mask, '?') - mask));
     }
 
     return NULL;
