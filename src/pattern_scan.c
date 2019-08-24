@@ -3,24 +3,39 @@
 #include <string.h>
 #include <stddef.h>
 
-void* FindPattern(const unsigned char* pattern, const char* mask, const unsigned char* buffer, size_t buffer_size)
+void* find_pattern(const void* pattern, const char* mask, const void* buffer, size_t bufferlen)
 {
-    size_t mask_size = strlen(mask);
-
-    if (mask_size == 0)
+    const unsigned char* patt = (const unsigned char*)pattern;
+    const unsigned char* buff = (const unsigned char*)buffer;
+    
+    if(pattern == NULL)
         return NULL;
 
-    const unsigned char* end = buffer + buffer_size - mask_size;
+    if(mask == NULL)
+        return NULL;
 
-    for (; buffer < end; ++buffer) {
+    if(buffer == NULL)
+        return NULL;
+    
+    if(bufferlen == 0)
+        return NULL;
+
+    size_t masklen = strlen(mask);
+
+    if (masklen == 0)
+        return NULL;
+
+    const unsigned char* end = buffer + bufferlen - masklen;
+
+    for (; buff < end; ++buff) {
         size_t i;
 
-        for (i = 0; i != mask_size; ++i) {
-            if (mask[i] != '?' && buffer[i] != pattern[i])
+        for (i = 0; i != masklen; ++i) {
+            if (mask[i] != '?' && buff[i] != patt[i])
                 break;
         }
-        if (i == mask_size)
-            return (void*)(buffer + (strchr(mask, '?') - mask));
+        if (i == masklen)
+            return (void*)(buff + (strchr(mask, '?') - mask));
     }
 
     return NULL;
