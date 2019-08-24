@@ -17,6 +17,6 @@
     - pass its size in bytes.
  */
 
-void* FindPattern(unsigned char* pattern, char* mask, unsigned char* buffer, size_t buffer_size);
+void* find_pattern(void* pattern, char* mask, void* buffer, size_t buffer_size);
 
 #endif // !PATTERN_SCAN_H
