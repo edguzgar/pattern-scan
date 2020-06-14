@@ -9,21 +9,24 @@ int main(void)
 {
     DWORD pid = GetProcessID("csgo.exe");
 
-    if (pid == 0) {
+    if (pid == 0) 
+    {
         puts("Process not found, exiting ...");
         return EXIT_FAILURE;
     }
     
     HANDLE process = GetProcessHandle(pid);
 
-    if (process == NULL) {
+    if (process == NULL) 
+    {
         puts("Process not found, exiting ...");
         return EXIT_FAILURE;
     }
 
     MODULEENTRY32 module;
     
-    if (GetModuleEntry("client_panorama.dll", pid, &module) != 0) {
+    if (GetModuleEntry("client_panorama.dll", pid, &module) != 0) 
+    {
         puts("Module not found, exiting ...");
         return EXIT_FAILURE;
     }
@@ -32,12 +35,14 @@ int main(void)
 
     SIZE_T read_bytes = 0;
 
-    if (!ReadProcessMemory(process, (LPVOID)module.modBaseAddr, buffer, (SIZE_T)module.modBaseSize, &read_bytes)) {
+    if (!ReadProcessMemory(process, (LPVOID)module.modBaseAddr, buffer, (SIZE_T)module.modBaseSize, &read_bytes)) 
+    {
         puts("Failed to read module, exiting ...");
         return EXIT_FAILURE;
     }
 
-    if (read_bytes != module.modBaseSize) {
+    if (read_bytes != module.modBaseSize) 
+    {
         puts("Failed to read module, exiting ...");
         return EXIT_FAILURE;
     }
@@ -47,7 +52,8 @@ int main(void)
 
     ptrdiff_t* health_ptr = FindPattern2(health_pattern, health_mask, buffer, module.modBaseSize);
 
-    if (health_ptr == NULL) {
+    if (health_ptr == NULL) 
+    {
         puts("Pattern not found ...");
         return EXIT_FAILURE;
     }
