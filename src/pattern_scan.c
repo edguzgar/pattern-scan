@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stddef.h>
 
-void* find_pattern(const void* pattern, const char* mask, const void* buffer, size_t bufferlen)
+void* find_pattern(const void* buffer, size_t bufferlen, const void* pattern, const char* mask)
 {
     const unsigned char* patt = (const unsigned char*)pattern;
     const unsigned char* buff = (const unsigned char*)buffer;
