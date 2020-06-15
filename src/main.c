@@ -58,7 +58,7 @@ int main(void)
         return EXIT_FAILURE;
     }
 
-    printf("The value of the Health Offset is: %#x", *health_ptr);
+    printf("The value of the Health Offset is: %#x", health_ptr);
     
     free(buffer);
 
