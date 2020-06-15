@@ -50,7 +50,7 @@ int main(void)
     unsigned char health_pattern[] = "\x89\x41\x64\x8B\x4F\x04\x83\xB9\x00\x00\x00\x00\x00\x7F\x2E\x8B\x01\x8B\x80\x88\x04\x00\x00";
     char health_mask[] = "xxxxxxxx????xxxxxxxxxxx";
 
-    ptrdiff_t* health_ptr = FindPattern2(health_pattern, health_mask, buffer, module.modBaseSize);
+    ptrdiff_t health_ptr = FindPattern2(health_pattern, health_mask, buffer, module.modBaseSize);
 
     if (health_ptr == NULL) 
     {
