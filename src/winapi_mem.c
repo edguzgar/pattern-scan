@@ -33,7 +33,7 @@ DWORD GetProcessID(const char* szProcess)
 
     if (processSnapshot != INVALID_HANDLE_VALUE) {
         
-		PROCESSENTRY32 processEntry;
+	PROCESSENTRY32 processEntry;
         processEntry.dwSize = sizeof(PROCESSENTRY32);
 
         if (Process32First(processSnapshot, &processEntry)) {
