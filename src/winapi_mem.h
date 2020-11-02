@@ -8,7 +8,7 @@
 // Only works for 32 bit
 
 BOOL	 IsProcessRunning(const char* process);
-DWORD	 GetProcessID(const char* process);
+DWORD  GetProcessID(const char* process);
 HANDLE GetProcessHandle(DWORD pid);
 int    GetModuleEntry(const char* moduleName, DWORD pid, MODULEENTRY32* module);
 DWORD	 GetModuleBaseAddr(const char* moduleName, DWORD pid);
