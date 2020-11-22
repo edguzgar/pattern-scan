@@ -1,9 +1,9 @@
+#include "string.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "string.h"
-    
 char* scan(char* string)
 {
     int c;
