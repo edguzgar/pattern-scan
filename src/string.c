@@ -54,7 +54,7 @@ void remove_char(char* s, int c)
     s[j] = '\0';
 }
 
-unsigned char* hexstr_to_char(const char* hexstr)
+unsigned char* hexstr_to_char(const char* hexstr) // Autor: xsleonard, https://gist.github.com/xsleonard/7341172
 {
     size_t len = strlen(hexstr);
 
