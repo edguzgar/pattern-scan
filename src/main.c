@@ -1,11 +1,12 @@
+#include "string.h"
+#include "swap.h"
+#include "stop.h"
+#include "winapi_mem.h"
+#include "pattern_scan.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-
-#include "string.h"
-#include "swap.h"
-#include "winapi_mem.h"
-#include "pattern_scan.h"
 
 int main(void)
 {
@@ -14,6 +15,7 @@ int main(void)
     if (pid == -1)
     {
         puts("Process not found, exiting ...");
+        stop();
         return EXIT_FAILURE;
     }
     
@@ -22,6 +24,7 @@ int main(void)
     if (process == NULL) 
     {
         puts("Process not found, exiting ...");
+        stop();
         return EXIT_FAILURE;
     }
 
@@ -32,6 +35,7 @@ int main(void)
     if (module == NULL)
     {
         puts("Module not found, exiting ...");
+        stop();
         return EXIT_FAILURE;
     }
 
@@ -42,12 +46,14 @@ int main(void)
     if (!ReadProcessMemory(process, (LPVOID)module->modBaseAddr, buffer, (SIZE_T)module->modBaseSize, &read_bytes)) 
     {
         puts("Failed to read module, exiting ...");
+        stop();
         return EXIT_FAILURE;
     }
 
     if (read_bytes != module->modBaseSize) 
     {
         puts("Failed to read module, exiting ...");
+        stop();
         return EXIT_FAILURE;
     }
 
@@ -82,6 +88,7 @@ int main(void)
     if (health_ptr == NULL)
     {
         puts("Pattern not found ...");
+        stop();
         return EXIT_FAILURE;
     }
 
@@ -93,6 +100,7 @@ int main(void)
     free(module);
     free(buffer);
     
+    stop();
 
     return EXIT_SUCCESS;
 }
