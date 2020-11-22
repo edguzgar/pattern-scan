@@ -1,8 +1,9 @@
 #include "winapi_mem.h"
 
 #include <string.h>
+#include <stdio.h>
 
-BOOL IsProcessRunning(const char* szProcess)
+BOOL IsProcessRunning(const char szProcess[])
 {
     HANDLE processSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 
@@ -26,9 +27,9 @@ BOOL IsProcessRunning(const char* szProcess)
     return FALSE;
 }
 
-DWORD GetProcessID(const char* szProcess)
+DWORD GetProcessID(const char szProcess[])
 {
-    DWORD pid = 0;
+    DWORD pid = -1;
     HANDLE processSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 
     if (processSnapshot != INVALID_HANDLE_VALUE) {
@@ -56,7 +57,7 @@ HANDLE GetProcessHandle(DWORD pid)
     return OpenProcess(PROCESS_ALL_ACCESS, FALSE, pid);		// PROCESS_VM_READ to just read
 }
 
-int GetModuleEntry(const char* szModule, DWORD pid, MODULEENTRY32* module)
+void GetModuleEntry(const char szModule[], DWORD pid, MODULEENTRY32* module)
 {
     HANDLE moduleSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, pid);
 
@@ -68,7 +69,7 @@ int GetModuleEntry(const char* szModule, DWORD pid, MODULEENTRY32* module)
             do {
                 if (strcmp(module->szModule, szModule) == 0) {
                     CloseHandle(moduleSnapshot);
-                    return 0;
+                    return;
                 }
             } while (Module32Next(moduleSnapshot, module));
         }
@@ -76,12 +77,12 @@ int GetModuleEntry(const char* szModule, DWORD pid, MODULEENTRY32* module)
         CloseHandle(moduleSnapshot);
     }
 
-    return -1;
+    module = NULL;
 }
 
-DWORD GetModuleBaseAddr(const char* szModule, DWORD pid)
+DWORD GetModuleBaseAddr(const char szModule[], DWORD pid)
 {
-    DWORD moduleBaseAddr = 0;
+    DWORD moduleBaseAddr = -1;
     HANDLE moduleSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, pid);
 
     if (moduleSnapshot != INVALID_HANDLE_VALUE) {

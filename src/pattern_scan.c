@@ -25,7 +25,7 @@ void* find_pattern(const void* buffer, size_t bufferlen, const void* pattern, co
     if (masklen == 0)
         return NULL;
 
-    const unsigned char* end = buffer + bufferlen - masklen;
+    const unsigned char* end = buff + bufferlen - masklen;
 
     for (; buff < end; ++buff) {
         size_t i;

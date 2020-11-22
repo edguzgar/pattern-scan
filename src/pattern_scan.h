@@ -11,6 +11,6 @@
    
  */
 
-void* find_pattern(void* pattern, char* mask, void* buffer, size_t buffer_size);
+void* find_pattern(const void* buffer, size_t bufferlen, const void* pattern, const char* mask);
 
 #endif // !PATTERN_SCAN_H
