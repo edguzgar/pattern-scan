@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-void stop()
+void stop(void)
 {
     printf("\n");
 
