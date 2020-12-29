@@ -47,7 +47,7 @@ void remove_char(char* s, int c)
 {
     int j, n = strlen(s);
     
-    for (int i = j = 0; i < n; i++)
+    for (int i = j = 0; i < n; ++i)
         if (s[i] != c)
             s[j++] = s[i];
 
@@ -64,7 +64,7 @@ unsigned char* hexstr_to_char(const char* hexstr) // Autor: xsleonard, https://g
     size_t final_len = len / 2;
     unsigned char* chrs = (unsigned char*)malloc((final_len + 1) * sizeof(*chrs));
 
-    for (size_t i = 0, j = 0; j < final_len; i += 2, j++)
+    for (size_t i = 0, j = 0; j < final_len; i += 2, ++j)
         chrs[j] = (hexstr[i] % 32 + 9) % 25 * 16 + (hexstr[i + 1] % 32 + 9) % 25;
 
     chrs[final_len] = '\0';
