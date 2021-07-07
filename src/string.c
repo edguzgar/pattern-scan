@@ -4,61 +4,59 @@
 #include <stdlib.h>
 #include <string.h>
 
-char* scan(char* string)
+char* scan(char* str)
 {
     int c;
-    string = malloc(sizeof(char));
+    str = malloc(sizeof(char));
 
-    string[0] = '\0';
+    str[0] = '\0';
     
     int i = 0;
-
     while ((c = getchar()) != '\n' && c != EOF)
     {
-        string = realloc(string, (i + 2) * sizeof(char));   // Reallocating memory (+ 1 for new character + 2 for '\0')
-        string[i] = (char)c;
+        str = realloc(str, (i + 2) * sizeof(char));   // Reallocating memory (+ 1 for new character + 2 for '\0')
+        str[i] = (char)c;
         ++i;
     }
 
-    string[i] = '\0';   // Inserting null character at the end
+    str[i] = '\0';   // Inserting null character at the end
 
-    return string;
+    return str;
 }
 
-int count(char str[], char search)
+int count(char* str, char search)
 {
     int count = 0;
+    
     int i = 0;
-
     while (str[i] != '\0')
     {
         if (str[i] == search)
         {
             ++count;
         }
-
         ++i;
     }
 
     return count;
 }
 
-void remove_char(char* s, int c)
+void remove_char(char* str, int c)
 {
-    int j, n = strlen(s);
+    int j, n = strlen(str);
     
     for (int i = j = 0; i < n; ++i)
-        if (s[i] != c)
-            s[j++] = s[i];
+        if (str[i] != c)
+            str[j++] = str[i];
 
-    s[j] = '\0';
+    str[j] = '\0';
 }
 
 unsigned char* hexstr_to_char(const char* hexstr) // Autor: xsleonard, https://gist.github.com/xsleonard/7341172
 {
     size_t len = strlen(hexstr);
 
-    if(len % 2 != 0)           // Make an assertion
+    if (len % 2 != 0)           // Make an assertion
         return NULL;
 
     size_t final_len = len / 2;
