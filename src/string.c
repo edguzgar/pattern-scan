@@ -24,7 +24,7 @@ char* scan(char* str)
     return str;
 }
 
-int count(char* str, char search)
+int count(char* str, char c)
 {
     int count = 0;
     
@@ -41,7 +41,7 @@ int count(char* str, char search)
     return count;
 }
 
-void remove_char(char* str, int c)
+void remove_char(char* str, char c)
 {
     int j, n = strlen(str);
     
